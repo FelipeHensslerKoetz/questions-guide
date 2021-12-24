@@ -9,6 +9,10 @@
   <body>
     <h1>Questions guide</h1>
     <hr />
-    <p>Hello <%= name%> your favorite languege is <%= language%>.</p>
+    <p>Hello <%= name%> your favorite language is <%= language%>.</p>
+
+    <% if(showSecretMessage){%>
+    <h3>This is a secret message!</h3>
+    <%}%>
   </body>
 </html>

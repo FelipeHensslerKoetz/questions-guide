@@ -5,8 +5,9 @@ app.set("view engine", "ejs");
 
 app.get("/:name/:language", (req, res) => {
   const { name, language } = req.params;
+  const showSecretMessage = true;
 
-  res.render("index", { name, language });
+  res.render("index", { name, language, showSecretMessage });
 });
 
 app.listen(3000, (err) => {
