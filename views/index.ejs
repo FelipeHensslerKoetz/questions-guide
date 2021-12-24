@@ -14,5 +14,11 @@
     <% if(showSecretMessage){%>
     <h3>This is a secret message!</h3>
     <%}%>
+
+    <ul>
+      <% products.forEach(product => { %>
+      <li><%= product.name %> - <%= product.price %></li>
+      <% }); %>
+    </ul>
   </body>
 </html>
