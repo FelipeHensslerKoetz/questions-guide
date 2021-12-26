@@ -8,6 +8,10 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.get("/ask", (req, res) => {
+  res.render("ask");
+});
+
 app.listen(3000, (err) => {
   err
     ? console.log("Something went wrong: ", err)
