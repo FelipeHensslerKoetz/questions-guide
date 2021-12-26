@@ -9,8 +9,14 @@
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
+    <nav class="navbar navbar-light bg-primary">
+      <a class="navbar-brand" href="/">
+        <img src="/img/logo.jpg" alt="Question logo" width="70" height="50" />
+      </a>
+    </nav>
+
     <div class="container">
-      <div class="card">
+      <div class="card" id="question-card-form">
         <div class="card-header">
           <h3>Make a question</h3>
         </div>
@@ -26,7 +32,7 @@
               class="form-control"
             ></textarea>
             <br />
-            <button class="btn btn-success" type="submit">Ask</button>
+            <button class="btn btn-primary" type="submit">Ask</button>
           </form>
         </div>
       </div>
