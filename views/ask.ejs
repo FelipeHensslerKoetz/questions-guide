@@ -11,11 +11,17 @@
 
       <div class="card-body">
         <hr />
-        <form action="" method="post">
+        <form action="/question" method="post">
           <label>Title</label>
-          <input type="text" placeholder="Title" class="form-control" />
+          <input
+            name="title"
+            type="text"
+            placeholder="Title"
+            class="form-control"
+          />
           <br /><label>Description</label>
           <textarea
+            name="description"
             placeholder="Describe your question here"
             class="form-control"
           ></textarea>
