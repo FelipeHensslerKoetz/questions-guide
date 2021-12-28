@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const connection = require("./database/database");
-const questionModel = require("./database/Question");
+const Question = require("./database/Question");
 
 connection
   .authenticate()
@@ -23,8 +23,10 @@ app.get("/ask", (req, res) => {
 });
 
 app.post("/question", (req, res) => {
-  console.log(req.body);
-  res.send("Request was received");
+  const { title, description } = req.body;
+  Question.create({ title, description })
+    .then(() => res.redirect("/"))
+    .catch((err) => console.log(err));
 });
 
 app.listen(3000, (err) => {

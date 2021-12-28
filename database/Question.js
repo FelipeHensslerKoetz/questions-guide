@@ -15,3 +15,5 @@ const Question = connection.define("question", {
 Question.sync({ force: false })
   .then(() => console.log("Question sync ok!"))
   .catch((err) => console.log(err));
+
+module.exports = Question;
