@@ -4,10 +4,7 @@ const bodyParser = require("body-parser");
 const connection = require("./database/database");
 const Question = require("./database/Question");
 
-connection
-  .authenticate()
-  .then(() => console.log("Database connection is OK!"))
-  .catch((err) => console.log(err));
+connection.authenticate();
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
@@ -15,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-  Question.findAll({ raw: true })
+  Question.findAll({ raw: true, order: [["id", "DESC"]] })
     .then((questions) => {
       res.render("index", { questions });
     })
@@ -30,6 +27,22 @@ app.post("/question", (req, res) => {
   const { title, description } = req.body;
   Question.create({ title, description })
     .then(() => res.redirect("/"))
+    .catch((err) => console.log(err));
+});
+
+app.get("/question/:id", (req, res) => {
+  const { id } = req.params;
+  Question.findOne({
+    where: { id: id },
+  })
+    .then((question) => {
+      if (question) {
+        console.log(question);
+        res.render("question", { question });
+      } else {
+        res.redirect("/");
+      }
+    })
     .catch((err) => console.log(err));
 });
 
