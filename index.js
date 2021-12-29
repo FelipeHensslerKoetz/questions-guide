@@ -38,11 +38,27 @@ app.get("/question/:id", (req, res) => {
   })
     .then((question) => {
       if (question) {
-        console.log(question);
-        res.render("question", { question });
+        Answer.findAll({
+          where: { questionId: id },
+          order: [["createdAt", "DESC"]],
+        })
+          .then((answers) => {
+            res.render("question", { question, answers });
+          })
+          .catch((err) => console.log(err));
       } else {
         res.redirect("/");
       }
+    })
+    .catch((err) => console.log(err));
+});
+
+app.post("/answer", (req, res) => {
+  const { body, questionId } = req.body;
+
+  Answer.create({ body, questionId })
+    .then((answer) => {
+      res.redirect(`/question/${questionId}`);
     })
     .catch((err) => console.log(err));
 });
